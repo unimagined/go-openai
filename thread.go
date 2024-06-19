@@ -87,10 +87,20 @@ const (
 )
 
 type ThreadMessage struct {
-	Role     ThreadMessageRole `json:"role"`
-	Content  string            `json:"content"`
-	FileIDs  []string          `json:"file_ids,omitempty"`
-	Metadata map[string]any    `json:"metadata,omitempty"`
+	Role        ThreadMessageRole         `json:"role"`
+	Content     string                    `json:"content"`
+	FileIDs     []string                  `json:"file_ids,omitempty"`
+	Attachments []ThreadMessageAttachment `json:"attachments,omitempty"`
+	Metadata    map[string]any            `json:"metadata,omitempty"`
+}
+
+type ThreadMessageAttachment struct {
+	FileID string              `json:"file_id"`
+	Tools  []ThreadMessageTool `json:"tools,omitempty"`
+}
+
+type ThreadMessageTool struct {
+	Type AssistantToolType `json:"type"`
 }
 
 type ThreadDeleteResponse struct {
